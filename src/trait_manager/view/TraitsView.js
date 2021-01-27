@@ -57,7 +57,6 @@ export default DomainViews.extend({
     const comp = this.em.getSelected();
     this.el.className = `${this.className} ${ppfx}one-bg ${ppfx}two-color`;
     this.collection = comp ? comp.get('traits') : [];
-    var index = 0;
     // Need to guard access to each, due to being undefined in some observed cases where collection is not a backbone collection.
     this.collection.each &&
       this.collection.each(function(model) {
@@ -203,6 +202,7 @@ export default DomainViews.extend({
     `;
 
     this.searchField && this.$el.prepend(this.searchField.el);
+
     if (this.collection.length)
       this.collection.each(function(model) {
         model.get('visible') && this.add(model, frag);
