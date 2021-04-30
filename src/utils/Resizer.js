@@ -429,11 +429,12 @@ class Resizer {
       this.selectedHandler = '';
       // if the document of the clicked element is not the document that contains this
       // component, don't blur it. (When clicking in property grid)
+      const docEls = this.getDocumentEl();
       if (
-        showWhenFocusOffCanvas &&
-        el.ownerDocument !== this.getDocumentEl()[0]
+        this.opts.showWhenFocusOffCanvas &&
+        docEls.length &&
+        el.ownerDocument !== docEls[0]
       ) {
-        console.log("Clicked outside. Don't blur handles");
         return;
       }
       this.blur();
